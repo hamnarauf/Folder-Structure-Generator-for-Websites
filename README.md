@@ -23,6 +23,4 @@ A Python based program that creates a basic folder structure for website
   
     2. Enter your directory
   
-    Creates above folders and files
-
-
+    Creates above folders and files in the specified directory.
