@@ -12,6 +12,9 @@ A Python based program that creates a basic folder structure for website
  │   └── script.js
  │
  └── index.html   (The main HTML file)
+ 
+ 
+ In addition, program also adds a basic boiler plate to HTML file.
 ```
 
 
