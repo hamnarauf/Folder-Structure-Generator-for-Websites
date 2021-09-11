@@ -14,7 +14,7 @@ A Python based program that creates a basic folder structure for website
  └── index.html   (The main HTML file)
  
  
- In addition, program also adds a basic boiler plate to HTML file.
+- In addition, program also adds a basic boiler plate to HTML file.
 ```
 
 
