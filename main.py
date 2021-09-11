@@ -1,37 +1,5 @@
 import os
 
-def createFolder(folder):
-    ''' Creates a folder at a specific path'''
-    completePath = os.path.join(path, folder)
-    try:
-        os.makedirs(completePath)
-        print(completePath + " created successfully.")
-    except:
-        print(completePath + " already exists.")
-
-
-def createFile(file, folder=""):
-    ''' Creates a file at a specific path'''
-    completePath = os.path.join(path, folder, file)
-    try:
-        open(completePath, "x")
-        print(completePath + " created successfully")
-    except:
-        print(completePath + " already exists")
-
-
-def writeToFile(filePath, text):
-    '''Writes text to a file'''
-    try:
-        file = open(filePath, "w")
-        file.write(text)
-
-    except:
-        print("Error occured while writing to the file")
-    finally:
-        file.close()
-
-
 # Boiler plate for html
 html_boilerPlate = """<!DOCTYPE html>
 <html lang="en">
@@ -55,29 +23,66 @@ html_boilerPlate = """<!DOCTYPE html>
 </html>
 """
 
-# Programs stars here
-print("Welcome to the automatic website folder structure creator.")
-path = ""
+# functions:
+def createFolder(folder):
+    ''' Creates a folder at a specific path'''
+    try:
+        os.makedirs(folder)
+        print(folder + " created successfully.")
+    except:
+        print(folder + " already exists.")
 
-while not os.path.isdir(path):
-    # asking user to enter directory till user enters a valid one
-    path = input("Enter directory: ")
-    if not os.path.isdir(path):         #if directory does not exists
-        print("Directory does not exist.")
 
-# creating folders: images, css and js
-createFolder("images")
-createFolder("css")
-createFolder("js")
+def createFile(file, folder=""):
+    ''' Creates a file at a specific path'''
+    completePath = os.path.join(folder, file)
+    try:
+        open(completePath, "x")
+        print(completePath + " created successfully")
+    except:
+        print(completePath + " already exists")
 
-# creating files in respective folders
-createFile("style.css", "css")
-createFile("script.js", "js")
-createFile("index.html")
 
-# adding a basic boiler plate to html file
-writeToFile(os.path.join(path, "index.html"), html_boilerPlate)
-print("HTML boiler plate created successfully.")
+def writeToFile(filePath, text):
+    '''Writes text to a file'''
+    try:
+        file = open(filePath, "w")
+        file.write(text)
 
-# exiting the program
-input("Press any key to exit ")
+    except:
+        print("Error occured while writing to the file")
+    finally:
+        file.close()
+
+
+# Programs starts here
+if __name__ == "__main__":
+
+    print("Welcome to the automatic website folder structure creator.")
+    path = ""
+
+    while not os.path.isdir(path):
+        # asking user to enter directory till user enters a valid one
+        path = input("Enter directory: ")
+        if not os.path.isdir(path):  # if directory does not exists
+            print("Directory does not exist.")
+
+    # changing directory
+    os.chdir(path)
+
+    # creating folders: images, css and js
+    createFolder("images")
+    createFolder("css")
+    createFolder("js")
+
+    # creating files in respective folders
+    createFile("style.css", "css")
+    createFile("script.js", "js")
+    createFile("index.html")
+
+    # adding a basic boiler plate to html file
+    writeToFile("index.html", html_boilerPlate)
+    print("HTML boiler plate created successfully.")
+
+    # exiting the program
+    input("Press any key to exit ")
